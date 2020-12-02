@@ -1,0 +1,12 @@
+{
+  "name": "dr-drone",
+  "displayName": "dr-drone",
+  "expo": {
+    "name": "dr-drone",
+    "slug": "dr-drone",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
