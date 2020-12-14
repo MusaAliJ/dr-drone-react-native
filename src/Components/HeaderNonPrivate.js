@@ -45,20 +45,10 @@ class Header extends Component {
                         marginLeft : 10,
                         color : 'white',
                     }}>
-                     {this.props.props.route.name}
+                      {this.props.props.route.name}
                     </Text>    
                 </View>
                 
-                <TouchableOpacity onPress = {()=>{alert()}} style = {{
-                    flex : 0.2
-                }}> 
-                    <Image
-                        source = {require('../Images/logout.png')}
-                        style = {styles.messages}
-                    />  
-                   
-                </TouchableOpacity>
-    
             </View>
                 <View style={styles.register_form_container}>
                     <Image

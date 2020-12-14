@@ -8,9 +8,11 @@ import {
     FlatList,
 } from "react-native";
 import { ListItem } from "react-native-elements";
+import AsyncStorage from "@react-native-community/async-storage";
+
 class History extends Component {
     state = {
-        data: [],
+        data: [  {drone_id_drone_name: 'Android'},{drone_id_drone_name: 'iOS'}, {drone_id_drone_name: 'Java'},{drone_id_drone_name: 'Swift'},  ],
     };
 
     componentDidMount = () => {
@@ -18,7 +20,7 @@ class History extends Component {
             "https://cors-anywhere.herokuapp.com/https://dr-drone.herokuapp.com/drone/request/",
             {
                 headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    Authorization: `Bearer ${AsyncStorage.getItem("token")}`,
                     "Content-Type": "application/json",
                 },
             }

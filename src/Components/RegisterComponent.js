@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 class Register extends Component {
-    state = {
-        username: "",
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
         name: "",
         email: "",
         nic: "",
@@ -11,7 +13,9 @@ class Register extends Component {
         number: "",
         disease: "",
         password: "",
-    };
+        }
+    }
+
     handleChange = (e) => {
         const target = e.target;
         const { form } = this.state;
@@ -38,7 +42,7 @@ class Register extends Component {
             .then(
                 (data) => {
                     alert("Registered");
-                    this.props.navigation.navigate("Login");
+                    this.props.props.navigation.navigate("Login");
                 },
                 (err) => alert("Error, try again")
             );
@@ -47,7 +51,7 @@ class Register extends Component {
         return (
             <React.Fragment>
                 <View style={styles.register_form_container}>
-                    <Text style={styles.heading}>Register</Text>
+                    {/* <Text style={styles.heading}>Register</Text> */}
                     <TextInput
                         style={styles.form_field}
                         name="username"
@@ -129,7 +133,7 @@ class Register extends Component {
                 <View style={styles.register_form_container}>
                     <Text
                         style={{ color: "#c10000" }}
-                        onPress={() => this.props.navigation.navigate("Login")}
+                        onPress={() => this.props.props.navigation.navigate("Login")}
                     >
                         Already have an account ?
                     </Text>

@@ -23,7 +23,7 @@ class Main extends Component {
                 >
                     {" "}
                     <Header />
-                    <Stack.Navigator>
+                    <Stack.Navigator initialRouteName="DroneComing">
                         <Stack.Screen
                             name="DroneComing"
                             component={DroneComing}

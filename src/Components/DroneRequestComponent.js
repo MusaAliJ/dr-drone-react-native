@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
+
 class DroneRequest extends Component {
     constructor(props) {
         super(props);
@@ -58,7 +59,7 @@ class DroneRequest extends Component {
         console.log(this.state.token);
         return (
             <React.Fragment>
-                <View style={{ justifyContent: "center" }}>
+                <View style={styles.container}>
                     <View style={styles.register_form_container}>
                         <TextInput
                             style={styles.form_field}
@@ -106,7 +107,13 @@ const styles = StyleSheet.create({
         width: 200,
         fontSize: 18,
         textAlign: "center",
-        fontWeight: 900,
+        fontWeight: 'bold',
     },
+    container: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '65%'
+
+    }
 });
 export default DroneRequest;

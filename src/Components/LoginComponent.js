@@ -1,11 +1,16 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
+
 class Register extends Component {
-    state = {
-        username: "",
-        password: "",
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            password: "",
+        }
+    }
+
     storeData = async (value) => {
         try {
             await AsyncStorage.setItem("token", value);
@@ -28,7 +33,7 @@ class Register extends Component {
             .then(
                 (data) => {
                     this.storeData(data.token);
-                    this.props.navigation.navigate("DroneRequest");
+                    this.props.props.navigation.navigate("Help");
                 },
                 (err) => alert("Error, try again")
             );
@@ -36,44 +41,46 @@ class Register extends Component {
     render() {
         return (
             <React.Fragment>
-                <View style={styles.register_form_container}>
-                    <TextInput
-                        style={styles.form_field}
-                        name="username"
-                        value={this.state.username}
-                        placeholder="Username"
-                        onChangeText={(username) =>
-                            this.setState({ username: username })
-                        }
-                    />
-                    <TextInput
-                        style={styles.form_field}
-                        secureTextEntry={true}
-                        name="password"
-                        value={this.state.password}
-                        placeholder="Password"
-                        onChangeText={(password) =>
-                            this.setState({ password: password })
-                        }
-                    />
-                </View>
-                <View style={styles.register_form_container}>
-                    <Button
-                        style={styles.button}
-                        color="#c10000"
-                        title="Login"
-                        onPress={this.handleSubmit}
-                    />
-                </View>
-                <View style={styles.register_form_container}>
-                    <Text
-                        style={{ color: "#c10000" }}
-                        onPress={() =>
-                            this.props.navigation.navigate("Register")
-                        }
-                    >
-                        Don't have any account ? Create Account
+                <View style={styles.container}>
+                    <View style={styles.register_form_container}>
+                        <TextInput
+                            style={styles.form_field}
+                            name="username"
+                            value={this.state.username}
+                            placeholder="Username"
+                            onChangeText={(username) =>
+                                this.setState({ username: username })
+                            }
+                        />
+                        <TextInput
+                            style={styles.form_field}
+                            secureTextEntry={true}
+                            name="password"
+                            value={this.state.password}
+                            placeholder="Password"
+                            onChangeText={(password) =>
+                                this.setState({ password: password })
+                            }
+                        />
+                    </View>
+                    <View style={styles.register_form_container}>
+                        <Button
+                            style={styles.button}
+                            color="#c10000"
+                            title="Login"
+                            onPress={this.handleSubmit}
+                        />
+                    </View>
+                    <View style={styles.register_form_container}>
+                        <Text
+                            style={{ color: "#c10000" }}
+                            onPress={() =>
+                                this.props.props.navigation.navigate("Registration")
+                            }
+                        >
+                            Don't have any account ? Create Account
                     </Text>
+                    </View>
                 </View>
             </React.Fragment>
         );
@@ -93,10 +100,14 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
         marginVertical: 5,
         borderRadius: 5,
+        marginBottom:20
     },
     button: {
         backgroundColor: "#c10000",
         color: "red",
     },
+    container:{
+        marginTop:'40%'
+    }
 });
 export default Register;

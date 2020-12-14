@@ -1,12 +1,36 @@
 {
   "name": "dr-drone",
-  "displayName": "dr-drone",
+  "displayName": "Dr. Drone",
   "expo": {
     "name": "dr-drone",
     "slug": "dr-drone",
     "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FF0000"
+    },
+    "sdkVersion":"38.0.0",
+     "android": {
+      "package": "com.dr.drone",
+      "versionCode": 1,
+      "permissions":[],
+      "icon":"./assets/icon.png",
+      "useNextNotificationsApi": true
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }
