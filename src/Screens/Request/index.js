@@ -27,7 +27,7 @@ export default class Request extends React.Component {
         return (
             <View>
                 <Header props={this.props}/>
-                <ReqComp />
+                <ReqComp props={this.props}/>
             </View>
         );
     };

@@ -12,7 +12,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#FF0000"
     },
-    "sdkVersion":"38.0.0",
+    "sdkVersion":"39.0.0",
      "android": {
       "package": "com.dr.drone",
       "versionCode": 1,

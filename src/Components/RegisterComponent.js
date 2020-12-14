@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button,ScrollView  } from "react-native";
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -50,6 +50,7 @@ class Register extends Component {
     render() {
         return (
             <React.Fragment>
+                <ScrollView style={styles.scrollView}>
                 <View style={styles.register_form_container}>
                     {/* <Text style={styles.heading}>Register</Text> */}
                     <TextInput
@@ -138,6 +139,7 @@ class Register extends Component {
                         Already have an account ?
                     </Text>
                 </View>
+                </ScrollView>
             </React.Fragment>
         );
     }
@@ -161,5 +163,8 @@ const styles = StyleSheet.create({
         fontSize: 22,
         fontWeight: "bold",
     },
+    scrollView: {
+        marginBottom: 250,
+      }
 });
 export default Register;

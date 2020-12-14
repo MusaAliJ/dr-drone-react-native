@@ -26,7 +26,7 @@ export default class Coming extends React.Component {
         return (
             <View>
                 <Header props={this.props}/>
-                <ComingComp />
+                <ComingComp props={this.props}/>
             </View>
         );
     };

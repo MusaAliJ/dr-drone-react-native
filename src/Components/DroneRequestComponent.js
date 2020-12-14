@@ -49,9 +49,11 @@ class DroneRequest extends Component {
             .then(
                 (data) => {
                     alert("Drone Request Sent");
-                    this.props.navigation.navigate("Coming");
+                    this.props.props.navigation.navigate("Coming");
                 },
-                (err) => alert("Error, try again")
+                (err) => {
+                    alert("Error, try again")
+                }
             );
     };
 

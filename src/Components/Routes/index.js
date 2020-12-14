@@ -25,9 +25,13 @@ function Private() {
     return (
         <Drawer.Navigator>
             <Drawer.Screen name="Help" component={Request} />
-            <Drawer.Screen name="Coming" component={Coming} />
-            {/* <Drawer.Screen name="History" component={History} /> */}
             <Drawer.Screen name="Contact" component={Contact} />
+            <Drawer.Screen name="Coming" component={Coming} options={{
+                drawerLabel: () => null,
+                title: null,
+                drawerIcon: () => null
+            }} />
+            {/* <Drawer.Screen name="History" component={History} /> */}
         </Drawer.Navigator>
     );
 }

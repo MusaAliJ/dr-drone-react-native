@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button, Image } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
+
+
 class DroneComing extends Component {
     constructor(props) {
         super(props);
@@ -56,14 +58,14 @@ class DroneComing extends Component {
         return (
             <React.Fragment>
                 <View style={styles.register_form_container}>
-                    <Text>Drone Name: {this.state.drone_data.drone_name}</Text>
-                    <Text>
+                    <Text style={styles.text}>Drone Name: {this.state.drone_data.drone_name}</Text>
+                    <Text style={styles.text}>
                         Drone Location: {this.state.drone_data.drone_location}
                     </Text>
-                    <Text>
+                    <Text style={styles.text}>
                         Drone User's Location: {this.state.data.user_location}
                     </Text>
-                    <Text>
+                    <Text style={styles.text}>
                         Estimated Time:{" "}
                         {this.state.estimated_time.toFixed() === 0
                             ? 2
@@ -90,6 +92,10 @@ const styles = StyleSheet.create({
     drone: {
         width: 400,
         height: 400,
+    },
+    text: {
+       fontSize:18,
+       marginBottom:10
     },
 });
 export default DroneComing;

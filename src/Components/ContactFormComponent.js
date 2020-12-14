@@ -5,7 +5,7 @@ class ContactFormComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user_id: "5fd1620fd78846229c5153cd",
+            user: "5fd1620fd78846229c5153cd",
             message: "",
             token: "",
         };
