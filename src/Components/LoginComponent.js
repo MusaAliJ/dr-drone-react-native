@@ -8,7 +8,7 @@ class Register extends Component {
         this.state = {
             username: "",
             password: "",
-        }
+        };
     }
 
     storeData = async (value) => {
@@ -75,11 +75,13 @@ class Register extends Component {
                         <Text
                             style={{ color: "#c10000" }}
                             onPress={() =>
-                                this.props.props.navigation.navigate("Registration")
+                                this.props.props.navigation.navigate(
+                                    "Registration"
+                                )
                             }
                         >
                             Don't have any account ? Create Account
-                    </Text>
+                        </Text>
                     </View>
                 </View>
             </React.Fragment>
@@ -100,14 +102,14 @@ const styles = StyleSheet.create({
         paddingVertical: 6,
         marginVertical: 5,
         borderRadius: 5,
-        marginBottom:20
+        marginBottom: 20,
     },
     button: {
         backgroundColor: "#c10000",
         color: "red",
     },
-    container:{
-        marginTop:'40%'
-    }
+    container: {
+        // marginTop:'40%'
+    },
 });
 export default Register;

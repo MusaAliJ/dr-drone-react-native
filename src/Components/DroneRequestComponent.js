@@ -49,14 +49,13 @@ class DroneRequest extends Component {
             .then(
                 (data) => {
                     alert("Drone Request Sent");
-                    this.props.navigation.navigate("DroneComing");
+                    this.props.navigation.navigate("Coming");
                 },
                 (err) => alert("Error, try again")
             );
     };
 
     render() {
-        console.log(this.state.token);
         return (
             <React.Fragment>
                 <View style={styles.container}>
@@ -107,13 +106,12 @@ const styles = StyleSheet.create({
         width: 200,
         fontSize: 18,
         textAlign: "center",
-        fontWeight: 'bold',
+        fontWeight: "bold",
     },
     container: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '65%'
-
-    }
+        justifyContent: "center",
+        // alignItems: "center",
+        // height: "65%",
+    },
 });
 export default DroneRequest;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import { StyleSheet, Text, View, TextInput, Button, Image } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 class DroneComing extends Component {
     constructor(props) {
@@ -71,6 +71,12 @@ class DroneComing extends Component {
                         Mints
                     </Text>
                 </View>
+                <View style={styles.register_form_container}>
+                    <Image
+                        source={require("../Images/drone.gif")}
+                        style={styles.drone}
+                    />
+                </View>
             </React.Fragment>
         );
     }
@@ -81,18 +87,9 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         paddingHorizontal: 20,
     },
-    form_field: {
-        borderWidth: 1,
-        borderColor: "lightgrey",
-        borderStyle: "solid",
-        paddingHorizontal: 5,
-        paddingVertical: 6,
-        marginVertical: 5,
-        borderRadius: 5,
-    },
-    button: {
-        backgroundColor: "#c10000",
-        color: "red",
+    drone: {
+        width: 400,
+        height: 400,
     },
 });
 export default DroneComing;

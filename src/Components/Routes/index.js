@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import React, { Component } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import Login from "../../Screens/Login";
 import Registration from "../../Screens/Registration";
 import Request from "../../Screens/Request";
@@ -26,7 +26,7 @@ function Private() {
         <Drawer.Navigator>
             <Drawer.Screen name="Help" component={Request} />
             <Drawer.Screen name="Coming" component={Coming} />
-            <Drawer.Screen name="History" component={History} />
+            {/* <Drawer.Screen name="History" component={History} /> */}
             <Drawer.Screen name="Contact" component={Contact} />
         </Drawer.Navigator>
     );
@@ -36,38 +36,23 @@ export default class Routes extends Component {
     render() {
         return (
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="Login" screenOptions={{
-                    headerShown: false
-                }}>
-                    <Stack.Screen
-                        name="Login"
-                        component={nonPrivate}
-                    />
-                    <Stack.Screen
-                        name="Registration"
-                        component={nonPrivate}
-                    />
+                <Stack.Navigator
+                    initialRouteName="Login"
+                    screenOptions={{
+                        headerShown: false,
+                    }}
+                >
+                    <Stack.Screen name="Login" component={nonPrivate} />
+                    <Stack.Screen name="Registration" component={nonPrivate} />
 
-                    <Stack.Screen
-                        name="Help"
-                        component={Private}
-                    />
-                    <Stack.Screen
-                        name="Coming"
-                        component={Private}
-                    />
+                    <Stack.Screen name="Help" component={Private} />
+                    <Stack.Screen name="Coming" component={Private} />
 
-                    <Stack.Screen
-                        name="History"
-                        component={Private}
-                    />
+                    <Stack.Screen name="History" component={Private} />
 
-                    <Stack.Screen
-                        name="Contact"
-                        component={Private}
-                    />
+                    <Stack.Screen name="Contact" component={Private} />
                 </Stack.Navigator>
             </NavigationContainer>
         );
     }
-};
+}
