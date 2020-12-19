@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
+import { connect } from 'react-redux';
+import { userOperations } from '../State/User';
 
 class DroneRequest extends Component {
     constructor(props) {
@@ -18,10 +19,12 @@ class DroneRequest extends Component {
         };
         this.getData();
     }
+
+
     getData = async (val) => {
         let value;
         try {
-            value = await AsyncStorage.getItem("token");
+            value = this.props.user.token;
             if (value !== null) {
                 this.setState({
                     token: value,
@@ -33,33 +36,20 @@ class DroneRequest extends Component {
         }
         return value;
     };
+    
     handleSubmit = async () => {
-        fetch(
-            "https://cors-anywhere.herokuapp.com/https://dr-drone.herokuapp.com/drone/request",
-            {
-                method: "POST",
-                body: JSON.stringify(this.state),
-                headers: {
-                    Authorization: `Bearer ${this.state.token}`,
-                    "Content-Type": "application/json",
-                },
-            }
-        )
-            .then((response) => response.json())
-            .then(
-                (data) => {
-                    alert("Drone Request Sent");
-                    this.props.props.navigation.navigate("Coming");
-                },
-                (err) => {
-                    alert("Error, try again")
-                }
-            );
+       this.props.help(this.state)
+       this.props.props.navigation.navigate("Coming");
     };
 
     render() {
+        this.props.helpData && alert("Drone Request Sent");
+        this.props.helpData && this.props.props.navigation.navigate("Coming");
+        this.props.error && alert( this.props.error);
+        this.props.emptyError()
+        
         return (
-            <React.Fragment>
+            <View>
                 <View style={styles.container}>
                     <View style={styles.register_form_container}>
                         <TextInput
@@ -80,7 +70,7 @@ class DroneRequest extends Component {
                         </Text>
                     </View>
                 </View>
-            </React.Fragment>
+            </View>
         );
     }
 }
@@ -116,4 +106,21 @@ const styles = StyleSheet.create({
         // height: "65%",
     },
 });
-export default DroneRequest;
+
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+       user:state.user,
+       error:state.error,
+       helpError:state.helpError
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        help: (cred) => { dispatch(userOperations.help(cred)) },
+        emptyError: () => { dispatch(userOperations.emptyError()) },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DroneRequest);

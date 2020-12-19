@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button, Image } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
-
+import { connect } from 'react-redux';
+import { userOperations } from '../State/User';
 
 class DroneComing extends Component {
     constructor(props) {
@@ -18,7 +18,7 @@ class DroneComing extends Component {
     getData = async (val) => {
         let value;
         try {
-            value = await AsyncStorage.getItem("token");
+            value = this.props.user.token;
             if (value !== null) {
                 this.setState({
                     token: value,
@@ -32,31 +32,21 @@ class DroneComing extends Component {
     };
     componentDidMount = () => {
         setTimeout(() => {
-            fetch(
-                "https://cors-anywhere.herokuapp.com/https://dr-drone.herokuapp.com/drone/rescue/" +
-                    this.state.request_id,
-                {
-                    headers: {
-                        Authorization: `Bearer ${this.state.token}`,
-                        "Content-Type": "application/json",
-                    },
-                }
-            )
-                .then((response) => response.json())
-                .then(
-                    (data) => {
-                        this.setState({
-                            drone_data: data.drone_id,
-                            data: data,
-                        });
-                    },
-                    (err) => alert("Error, try again")
-                );
+            
+            this.props.droneComing(this.state)
+
+            if(this.props.drone_data){
+                this.setState({
+                    drone_data: this.props.drone_data.drone_id,
+                    data: this.props.drone_data,
+                });
+            }
+
         }, 1000);
     };
     render() {
         return (
-            <React.Fragment>
+            <View>
                 <View style={styles.register_form_container}>
                     <Text style={styles.text}>Drone Name: {this.state.drone_data.drone_name}</Text>
                     <Text style={styles.text}>
@@ -79,7 +69,7 @@ class DroneComing extends Component {
                         style={styles.drone}
                     />
                 </View>
-            </React.Fragment>
+            </View>
         );
     }
 }
@@ -98,4 +88,20 @@ const styles = StyleSheet.create({
        marginBottom:10
     },
 });
-export default DroneComing;
+const mapStateToProps = (state) => {
+    console.log(state)
+    return {
+       user:state.user,
+       error:state.error,
+       drone_data:state.droneComing,
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        droneComing: (data) => { dispatch(userOperations.droneComing(data)) },
+        emptyError: () => { dispatch(userOperations.emptyError()) },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DroneComing);

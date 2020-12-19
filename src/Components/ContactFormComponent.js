@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
+// import AsyncStorage from "@react-native-community/async-storage";
 class ContactFormComponent extends Component {
     constructor(props) {
         super(props);
@@ -14,7 +14,7 @@ class ContactFormComponent extends Component {
     getData = async (val) => {
         let value;
         try {
-            value = await AsyncStorage.getItem("token");
+            // value = await AsyncStorage.getItem("token");
             if (value !== null) {
                 this.setState({
                     token: value,

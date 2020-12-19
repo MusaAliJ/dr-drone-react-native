@@ -6,8 +6,6 @@ import Header from "./HeaderComponent";
 import DroneRequest from "./DroneRequestComponent";
 import History from "./HistoryComponent";
 import DroneComing from "./DroneComingComponent";
-// import { createStackNavigator } from "react-navigation-stack";
-
 import { createStackNavigator } from "@react-navigation/stack";
 
 const Stack = createStackNavigator();

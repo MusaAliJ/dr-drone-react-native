@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button,ScrollView  } from "react-native";
+
 class Register extends Component {
     constructor(props) {
         super(props);

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-import AsyncStorage from "@react-native-community/async-storage";
+import { connect } from 'react-redux';
+import { userOperations } from '../State/User';
 
 class Register extends Component {
     constructor(props) {
@@ -8,39 +9,30 @@ class Register extends Component {
         this.state = {
             username: "",
             password: "",
+            check: [{ username: 'test', password: 'test' }]
         };
     }
 
-    storeData = async (value) => {
-        try {
-            await AsyncStorage.setItem("token", value);
-        } catch (e) {
-            // saving error
-        }
-    };
     handleSubmit = async () => {
-        fetch(
-            "https://cors-anywhere.herokuapp.com/https://dr-drone.herokuapp.com/user/login",
-            {
-                method: "POST",
-                body: JSON.stringify(this.state),
-                headers: {
-                    "Content-Type": "application/json",
-                },
+        this.props.login(this.state);
+
+        this.state.check.map((item) => {
+            if (item.username == this.state.username && item.password == this.state.password) {
+                this.props.props.navigation.navigate("Help");
             }
-        )
-            .then((response) => response.json())
-            .then(
-                (data) => {
-                    this.storeData(data.token);
-                    this.props.props.navigation.navigate("Help");
-                },
-                (err) => alert("Error, try again")
-            );
+        })
+        this.props.props.navigation.navigate("Help");
     };
+
     render() {
+
+        this.props.error && alert(this.props.error)
+        this.props.user.token && alert("Success fully Login"+this.props.user.token);
+        this.props.user.token && this.props.props.navigation.navigate("Help");
+        this.props.emptyError()
+
         return (
-            <React.Fragment>
+            <View>
                 <View style={styles.container}>
                     <View style={styles.register_form_container}>
                         <TextInput
@@ -84,7 +76,7 @@ class Register extends Component {
                         </Text>
                     </View>
                 </View>
-            </React.Fragment>
+            </View>
         );
     }
 }
@@ -112,4 +104,19 @@ const styles = StyleSheet.create({
         // marginTop:'40%'
     },
 });
-export default Register;
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        error: state.error
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login: (cred) => { dispatch(userOperations.login(cred)) },
+        emptyError: () => { dispatch(userOperations.emptyError()) },
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

@@ -1,25 +1,16 @@
 {
-  "name": "dr-drone",
-  "displayName": "Dr. Drone",
   "expo": {
-    "name": "dr-drone",
-    "slug": "dr-drone",
+    "name": "doctor-drone",
+    "slug": "doctor-drone",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./public/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./public/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#FF0000"
     },
     "sdkVersion":"39.0.0",
-     "android": {
-      "package": "com.dr.drone",
-      "versionCode": 1,
-      "permissions":[],
-      "icon":"./assets/icon.png",
-      "useNextNotificationsApi": true
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -29,8 +20,15 @@
     "ios": {
       "supportsTablet": true
     },
+    "android": {
+      "package": "com.dr.drone",
+      "versionCode": 1,
+      "permissions":[],
+      "icon":"./public/icon.png",
+      "useNextNotificationsApi": true
+    },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./public/favicon.png"
     }
   }
 }
